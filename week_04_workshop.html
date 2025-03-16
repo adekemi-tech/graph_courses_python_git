@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Adekemi Asaolu">
+
+<title>week_04_workshop</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="week_04_workshop_files/libs/clipboard/clipboard.min.js"></script>
+<script src="week_04_workshop_files/libs/quarto-html/quarto.js"></script>
+<script src="week_04_workshop_files/libs/quarto-html/popper.min.js"></script>
+<script src="week_04_workshop_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="week_04_workshop_files/libs/quarto-html/anchor.min.js"></script>
+<link href="week_04_workshop_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="week_04_workshop_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="week_04_workshop_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="week_04_workshop_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="week_04_workshop_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.35.2.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The India TB Pathways dataset is based on a study conducted in Vellore district, Tamil Nadu, India. It examines the pre-diagnostic costs and health-seeking behavior of 880 new adult pulmonary tuberculosis patients registered at Primary Health Centres (PHCs).</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Adekemi Asaolu </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>title: “India TB Pathways Analysis”</p>
+<div id="dae8effa" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:1: SyntaxWarning:
+
+invalid escape sequence '\d'
+
+&lt;&gt;:1: SyntaxWarning:
+
+invalid escape sequence '\d'
+
+C:\Users\Adekemi Asaolu\AppData\Local\Temp\ipykernel_35468\1748002584.py:1: SyntaxWarning:
+
+invalid escape sequence '\d'
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">Sex</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Education</th>
+<th data-quarto-table-cell-role="th">Employment</th>
+<th data-quarto-table-cell-role="th">Alcohol</th>
+<th data-quarto-table-cell-role="th">Smoking</th>
+<th data-quarto-table-cell-role="th">WtinKgs</th>
+<th data-quarto-table-cell-role="th">HtinCms</th>
+<th data-quarto-table-cell-role="th">bmi</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Form of TB</th>
+<th data-quarto-table-cell-role="th">Chext Xray</th>
+<th data-quarto-table-cell-role="th">first visit location</th>
+<th data-quarto-table-cell-role="th">first visit cost</th>
+<th data-quarto-table-cell-role="th">second visit location</th>
+<th data-quarto-table-cell-role="th">second visit cost</th>
+<th data-quarto-table-cell-role="th">third visit location</th>
+<th data-quarto-table-cell-role="th">third visit cost</th>
+<th data-quarto-table-cell-role="th">Health sys delay (in days)</th>
+<th data-quarto-table-cell-role="th">Treatment initiation delay (in days)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>100202</td>
+<td>Male</td>
+<td>57</td>
+<td>Middle</td>
+<td>Working</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>58.0</td>
+<td>165.0</td>
+<td>21.3</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>GH</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>15.0</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>100396</td>
+<td>Female</td>
+<td>66</td>
+<td>No Education</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>32.0</td>
+<td>163.0</td>
+<td>12.0</td>
+<td>...</td>
+<td>Ini smear -</td>
+<td>Positive</td>
+<td>Pvt. docto</td>
+<td>1500</td>
+<td>Pvt. clini</td>
+<td>1000</td>
+<td>Pvt. hospi</td>
+<td>2500</td>
+<td>60.0</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>100590</td>
+<td>Female</td>
+<td>45</td>
+<td>Missing</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>46.0</td>
+<td>150.0</td>
+<td>20.4</td>
+<td>...</td>
+<td>Ini smear -</td>
+<td>Positive</td>
+<td>Pvt. docto</td>
+<td>2000</td>
+<td>Pvt. docto</td>
+<td>3000</td>
+<td>PHC</td>
+<td>0</td>
+<td>43.0</td>
+<td>21.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>100687</td>
+<td>Male</td>
+<td>27</td>
+<td>Middle</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>51.0</td>
+<td>165.0</td>
+<td>18.7</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>Pvt. hospi</td>
+<td>20000</td>
+<td>Pvt. hospi</td>
+<td>1500</td>
+<td>PHC</td>
+<td>0</td>
+<td>35.0</td>
+<td>5.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>100784</td>
+<td>Male</td>
+<td>54</td>
+<td>Middle</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>39.0</td>
+<td>160.0</td>
+<td>15.2</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>Positive</td>
+<td>Pvt. docto</td>
+<td>1000</td>
+<td>GH</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>14.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">875</td>
+<td>1604672</td>
+<td>Male</td>
+<td>44</td>
+<td>Middle</td>
+<td>Working</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>42.7</td>
+<td>175.0</td>
+<td>13.9</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>Pvt. docto</td>
+<td>9000</td>
+<td>Pvt. docto</td>
+<td>800</td>
+<td>GH</td>
+<td>0</td>
+<td>14.0</td>
+<td>11.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">876</td>
+<td>1604769</td>
+<td>Male</td>
+<td>60</td>
+<td>Middle</td>
+<td>Working</td>
+<td>No</td>
+<td>No</td>
+<td>64.2</td>
+<td>175.0</td>
+<td>21.0</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>Positive</td>
+<td>Pvt. clini</td>
+<td>500</td>
+<td>Tambram Sanatorium</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>14.0</td>
+<td>10.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">877</td>
+<td>1604866</td>
+<td>Male</td>
+<td>63</td>
+<td>Middle</td>
+<td>Working</td>
+<td>No</td>
+<td>Yes</td>
+<td>38.5</td>
+<td>160.0</td>
+<td>15.0</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>Pvt. docto</td>
+<td>1000</td>
+<td>Tambram Sanatorium</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>180.0</td>
+<td>22.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">878</td>
+<td>1604963</td>
+<td>Male</td>
+<td>65</td>
+<td>No Education</td>
+<td>Working</td>
+<td>No</td>
+<td>No</td>
+<td>37.0</td>
+<td>167.0</td>
+<td>13.3</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>PHC</td>
+<td>0</td>
+<td>Tambram Sanatorium</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>150.0</td>
+<td>20.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">879</td>
+<td>1605060</td>
+<td>Male</td>
+<td>60</td>
+<td>Middle</td>
+<td>Working</td>
+<td>No</td>
+<td>No</td>
+<td>46.8</td>
+<td>155.5</td>
+<td>19.4</td>
+<td>...</td>
+<td>Missing</td>
+<td>Positive</td>
+<td>Pvt. hospi</td>
+<td>300</td>
+<td>Pvt. clini</td>
+<td>3200</td>
+<td>GH</td>
+<td>0</td>
+<td>90.0</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>880 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<div id="dc4d2b7c" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stderr">
+<pre><code>'[Map' is not recognized as an internal or external command,
+operable program or batch file.</code></pre>
+</div>
+</div>
+<div id="8ca5434c" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:1: SyntaxWarning:
+
+invalid escape sequence '\d'
+
+&lt;&gt;:1: SyntaxWarning:
+
+invalid escape sequence '\d'
+
+C:\Users\Adekemi Asaolu\AppData\Local\Temp\ipykernel_35468\1748002584.py:1: SyntaxWarning:
+
+invalid escape sequence '\d'
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">Sex</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">Education</th>
+<th data-quarto-table-cell-role="th">Employment</th>
+<th data-quarto-table-cell-role="th">Alcohol</th>
+<th data-quarto-table-cell-role="th">Smoking</th>
+<th data-quarto-table-cell-role="th">WtinKgs</th>
+<th data-quarto-table-cell-role="th">HtinCms</th>
+<th data-quarto-table-cell-role="th">bmi</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Form of TB</th>
+<th data-quarto-table-cell-role="th">Chext Xray</th>
+<th data-quarto-table-cell-role="th">first visit location</th>
+<th data-quarto-table-cell-role="th">first visit cost</th>
+<th data-quarto-table-cell-role="th">second visit location</th>
+<th data-quarto-table-cell-role="th">second visit cost</th>
+<th data-quarto-table-cell-role="th">third visit location</th>
+<th data-quarto-table-cell-role="th">third visit cost</th>
+<th data-quarto-table-cell-role="th">Health sys delay (in days)</th>
+<th data-quarto-table-cell-role="th">Treatment initiation delay (in days)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>100202</td>
+<td>Male</td>
+<td>57</td>
+<td>Middle</td>
+<td>Working</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>58.0</td>
+<td>165.0</td>
+<td>21.3</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>GH</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>15.0</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>100396</td>
+<td>Female</td>
+<td>66</td>
+<td>No Education</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>32.0</td>
+<td>163.0</td>
+<td>12.0</td>
+<td>...</td>
+<td>Ini smear -</td>
+<td>Positive</td>
+<td>Pvt. docto</td>
+<td>1500</td>
+<td>Pvt. clini</td>
+<td>1000</td>
+<td>Pvt. hospi</td>
+<td>2500</td>
+<td>60.0</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>100590</td>
+<td>Female</td>
+<td>45</td>
+<td>Missing</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>46.0</td>
+<td>150.0</td>
+<td>20.4</td>
+<td>...</td>
+<td>Ini smear -</td>
+<td>Positive</td>
+<td>Pvt. docto</td>
+<td>2000</td>
+<td>Pvt. docto</td>
+<td>3000</td>
+<td>PHC</td>
+<td>0</td>
+<td>43.0</td>
+<td>21.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>100687</td>
+<td>Male</td>
+<td>27</td>
+<td>Middle</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>51.0</td>
+<td>165.0</td>
+<td>18.7</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>Pvt. hospi</td>
+<td>20000</td>
+<td>Pvt. hospi</td>
+<td>1500</td>
+<td>PHC</td>
+<td>0</td>
+<td>35.0</td>
+<td>5.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>100784</td>
+<td>Male</td>
+<td>54</td>
+<td>Middle</td>
+<td>Non - Working</td>
+<td>No</td>
+<td>No</td>
+<td>39.0</td>
+<td>160.0</td>
+<td>15.2</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>Positive</td>
+<td>Pvt. docto</td>
+<td>1000</td>
+<td>GH</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>14.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">875</td>
+<td>1604672</td>
+<td>Male</td>
+<td>44</td>
+<td>Middle</td>
+<td>Working</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>42.7</td>
+<td>175.0</td>
+<td>13.9</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>Pvt. docto</td>
+<td>9000</td>
+<td>Pvt. docto</td>
+<td>800</td>
+<td>GH</td>
+<td>0</td>
+<td>14.0</td>
+<td>11.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">876</td>
+<td>1604769</td>
+<td>Male</td>
+<td>60</td>
+<td>Middle</td>
+<td>Working</td>
+<td>No</td>
+<td>No</td>
+<td>64.2</td>
+<td>175.0</td>
+<td>21.0</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>Positive</td>
+<td>Pvt. clini</td>
+<td>500</td>
+<td>Tambram Sanatorium</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>14.0</td>
+<td>10.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">877</td>
+<td>1604866</td>
+<td>Male</td>
+<td>63</td>
+<td>Middle</td>
+<td>Working</td>
+<td>No</td>
+<td>Yes</td>
+<td>38.5</td>
+<td>160.0</td>
+<td>15.0</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>Pvt. docto</td>
+<td>1000</td>
+<td>Tambram Sanatorium</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>180.0</td>
+<td>22.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">878</td>
+<td>1604963</td>
+<td>Male</td>
+<td>65</td>
+<td>No Education</td>
+<td>Working</td>
+<td>No</td>
+<td>No</td>
+<td>37.0</td>
+<td>167.0</td>
+<td>13.3</td>
+<td>...</td>
+<td>Ini smear +</td>
+<td>NaN</td>
+<td>PHC</td>
+<td>0</td>
+<td>Tambram Sanatorium</td>
+<td>0</td>
+<td>NaN</td>
+<td>0</td>
+<td>150.0</td>
+<td>20.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">879</td>
+<td>1605060</td>
+<td>Male</td>
+<td>60</td>
+<td>Middle</td>
+<td>Working</td>
+<td>No</td>
+<td>No</td>
+<td>46.8</td>
+<td>155.5</td>
+<td>19.4</td>
+<td>...</td>
+<td>Missing</td>
+<td>Positive</td>
+<td>Pvt. hospi</td>
+<td>300</td>
+<td>Pvt. clini</td>
+<td>3200</td>
+<td>GH</td>
+<td>0</td>
+<td>90.0</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>880 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<div id="63c72f6e" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>                            <div id="96eeefa0-966b-46d8-8ae3-715f346cfbe4" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("96eeefa0-966b-46d8-8ae3-715f346cfbe4")) {                    Plotly.newPlot(                        "96eeefa0-966b-46d8-8ae3-715f346cfbe4",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"Sex=Male\u003cbr\u003eForm of TB=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"Male","offsetgroup":"Male","orientation":"v","showlegend":true,"x":["Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Missing","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Missing","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Missing","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Missing","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear -","Missing","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Missing"],"xaxis":"x","yaxis":"y","type":"histogram"},{"alignmentgroup":"True","bingroup":"x","hovertemplate":"Sex=Female\u003cbr\u003eForm of TB=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#EF553B","pattern":{"shape":""}},"name":"Female","offsetgroup":"Female","orientation":"v","showlegend":true,"x":["Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Missing","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear +","Ini smear -","Ini smear +","Ini smear +"],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Form of TB"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"title":{"text":"Sex"},"tracegroupgap":0},"title":{"text":"Distribution of  form of TBs among different genders"},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('96eeefa0-966b-46d8-8ae3-715f346cfbe4');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<section id="tuberculosis-positives-were-mostly-male-ini-smear" class="level2">
+<h2 class="anchored" data-anchor-id="tuberculosis-positives-were-mostly-male-ini-smear">Tuberculosis positives were mostly male ini smear +</h2>
+<div id="ecf0f5aa" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>                            <div id="d02f43e8-d0e1-40fe-b625-a7c1ce58890f" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("d02f43e8-d0e1-40fe-b625-a7c1ce58890f")) {                    Plotly.newPlot(                        "d02f43e8-d0e1-40fe-b625-a7c1ce58890f",                        [{"alignmentgroup":"True","hovertemplate":"Sex=Male\u003cbr\u003eAge=%{x}\u003cbr\u003eEducation=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#636efa"},"name":"Male","notched":false,"offsetgroup":"Male","orientation":"h","showlegend":true,"x":[57,27,54,60,28,34,48,40,46,38,27,35,52,52,38,30,65,65,55,35,32,55,55,38,55,55,25,42,54,48,27,57,52,40,38,70,27,24,73,60,42,24,20,38,26,39,55,34,38,45,55,35,60,18,19,39,36,37,25,36,62,52,57,67,65,75,60,30,65,24,38,57,67,42,64,42,36,48,44,37,45,55,42,19,45,60,45,30,40,58,60,20,35,50,55,50,30,42,55,47,35,70,67,48,29,63,52,38,40,44,51,28,42,23,23,62,47,39,55,62,34,45,30,53,58,30,68,60,21,54,60,50,55,60,50,38,49,19,65,55,60,40,55,38,60,45,45,48,60,25,56,35,33,33,42,41,30,65,62,56,60,43,65,35,39,63,40,48,45,25,65,31,50,54,40,65,38,65,30,30,35,54,55,45,48,50,63,37,45,60,40,43,41,40,65,54,55,45,25,69,30,19,45,45,41,62,26,55,40,31,40,21,70,65,48,63,65,43,70,55,55,38,59,38,48,38,20,52,60,34,64,65,62,52,50,57,47,63,57,45,51,48,67,65,18,69,65,44,45,32,60,60,63,72,65,65,67,44,71,46,55,44,52,43,25,42,53,60,42,60,55,35,55,48,50,42,41,60,69,65,38,59,49,57,49,54,32,42,57,49,67,65,56,57,21,27,30,29,20,60,64,67,58,60,55,50,68,45,40,36,35,47,41,49,48,31,52,63,57,38,51,50,61,65,35,39,52,37,38,60,34,65,23,56,21,57,33,23,50,53,60,51,66,35,49,23,68,40,36,55,38,21,18,60,52,58,58,60,50,50,26,25,59,67,41,50,55,48,57,70,37,51,47,58,60,59,65,59,45,27,54,60,45,33,37,25,65,65,44,54,55,35,49,22,67,40,30,30,38,53,63,65,32,40,26,56,66,60,69,43,62,68,55,56,45,52,69,65,51,45,38,48,55,50,60,60,57,57,24,52,47,28,60,28,48,60,50,38,53,58,52,60,34,60,55,39,55,25,65,65,25,60,63,65,40,50,45,65,35,62,52,45,59,51,45,47,75,66,47,40,38,60,54,56,49,60,65,47,55,56,48,60,48,62,58,55,56,59,68,40,63,45,45,50,20,60,65,60,50,53,55,47,57,40,50,67,66,55,75,29,45,88,57,67,75,55,60,50,46,80,47,42,18,70,38,48,59,65,57,51,65,60,58,40,47,62,40,24,38,66,36,57,65,65,44,62,65,50,65,39,37,35,60,40,26,24,66,46,47,65,65,65,50,32,45,70,56,60,59,45,55,58,55,55,70,35,40,58,46,73,27,65,23,34,28,64,60,64,60,55,49,53,60,21,20,40,27,40,40,29,43,65,50,70,55,55,65,67,48,55,76,42,76,22,65,24,35,53,46,45,35,57,18,65,38,62,49,50,60,68,24,48,54,50,61,39,44,37,61,50,61,53,68,25,32,55,44,60,55,63,49,27,45,32,60,44,53,20,62,60,48,52,64,53,58,62,55,25,43,35,57,36,23,41,52,39,45,36,35,47,55,35,63,44,60,63,65,60],"x0":" ","xaxis":"x","y":["Middle","Middle","Middle","No Education","Primary","Middle","Middle","No Education","Middle","Primary","Secondary","No Education","Primary","Middle","Middle","Primary","No Education","No Education","Middle","Primary","Primary","Secondary","Middle","Primary","No Education","No Education","Higher Secondary","No Education","No Education","No Education","Primary","Middle","Primary","Middle","Secondary","No Education","No Education","Secondary","Primary","No Education","Primary","Higher Secondary","Secondary","Middle","Primary","No Education","No Education","Primary","Primary","Primary","No Education","Primary","Primary","Secondary","Graduate","Secondary","Primary","Primary","Middle","No Education","Primary","Middle","Higher Secondary","Higher Secondary","No Education","Primary","Primary","No Education","No Education","Secondary","Primary","No Education","No Education","Secondary","Primary","No Education","Secondary","No Education","Secondary","No Education","No Education","Primary","Primary","Middle","No Education","Primary","No Education","No Education","Middle","Secondary","Primary","Middle","No Education","Primary","Primary","No Education","Secondary","Middle","No Education","No Education","Primary","No Education","No Education","Primary","Secondary","No Education","No Education","Higher Secondary","No Education","Secondary","No Education","Primary","Primary","Higher Secondary","Secondary","Secondary","Primary","Secondary","Primary","Primary","Secondary","Primary","Primary","No Education","Middle","Middle","Primary","Primary","Secondary","Primary","No Education","Primary","No Education","Primary","No Education","Middle","Secondary","Higher Secondary","Primary","Middle","Middle","Primary","Middle","No Education","Primary","No Education","No Education","Primary","No Education","Higher Secondary","No Education","Middle","Middle","No Education","Primary","Primary","Higher Secondary","No Education","No Education","No Education","No Education","No Education","Middle","No Education","Middle","Primary","Middle","Primary","No Education","Primary","No Education","Middle","Primary","Primary","No Education","No Education","Primary","No Education","Primary","Secondary","Primary","Secondary","Middle","Primary","Middle","Middle","Secondary","Primary","No Education","Primary","Middle","Primary","Middle","No Education","Primary","Middle","Primary","No Education","Higher Secondary","No Education","Primary","Higher Secondary","Secondary","Secondary","Primary","No Education","Middle","Primary","Middle","Higher Secondary","Middle","Secondary","Secondary","Primary","Middle","Primary","No Education","No Education","Primary","Secondary","No Education","Middle","Missing","Higher Secondary","Secondary","No Education","Graduate & Above","Middle","Primary","Middle","No Education","No Education","Primary","Secondary","No Education","Middle","No Education","No Education","Middle","Primary","Middle","Primary","Middle","Primary","Higher Secondary","Primary","No Education","Middle","Secondary","Primary","Primary","Primary","No Education","No Education","Primary","Primary","Primary","Middle","Primary","No Education","Middle","Primary","Primary","Secondary","Middle","Middle","Primary","Primary","Middle","Higher Secondary","Middle","No Education","Primary","No Education","No Education","No Education","Secondary","Middle","Secondary","No Education","Primary","Secondary","Primary","Middle","Middle","No Education","Middle","Middle","Secondary","Primary","No Education","Primary","No Education","Middle","Secondary","Primary","Secondary","Middle","Middle","No Education","Primary","Primary","Primary","Middle","No Education","Secondary","No Education","No Education","Primary","Primary","Secondary","Middle","Middle","Primary","Middle","Higher Secondary","Primary","Primary","Middle","Primary","Secondary","No Education","Primary","No Education","Secondary","Secondary","Primary","Middle","Middle","Primary","Primary","Middle","Higher Secondary","Middle","Secondary","Secondary","Primary","Graduate","Middle","Middle","Primary","Primary","Secondary","No Education","Middle","Primary","Middle","Middle","Primary","No Education","Middle","Secondary","Higher Secondary","Secondary","Middle","Middle","Middle","No Education","Middle","No Education","Secondary","Middle","Middle","Primary","Primary","Primary","Primary","Secondary","Middle","Primary","Secondary","Primary","Secondary","Primary","Secondary","Primary","No Education","Secondary","No Education","Middle","Secondary","Middle","Primary","Secondary","No Education","Graduate & Above","Middle","Primary","Middle","No Education","Primary","Secondary","Middle","Secondary","Secondary","No Education","Secondary","Middle","Primary","Secondary","Middle","Primary","Middle","Secondary","Primary","Secondary","Secondary","Primary","Middle","Middle","Primary","No Education","Primary","Middle","Middle","No Education","No Education","No Education","Middle","No Education","No Education","No Education","No Education","No Education","No Education","Primary","Primary","Primary","Middle","Secondary","No Education","Secondary","Primary","Middle","Middle","No Education","No Education","Middle","Middle","No Education","Middle","Primary","Primary","Primary","No Education","Secondary","No Education","Secondary","Middle","No Education","Higher Secondary","Middle","Secondary","No Education","Middle","Secondary","No Education","Secondary","Primary","Primary","Middle","Primary","Higher Secondary","Primary","Middle","Middle","Middle","Primary","Middle","No Education","Middle","No Education","Secondary","Middle","Primary","No Education","No Education","Primary","Primary","Primary","Primary","Middle","Middle","Secondary","Middle","Primary","Missing","Graduate","No Education","Secondary","Primary","Middle","Primary","Middle","Higher Secondary","No Education","Secondary","Middle","No Education","Middle","No Education","Primary","Secondary","Middle","Middle","Primary","Secondary","Primary","No Education","Middle","No Education","No Education","No Education","No Education","No Education","No Education","No Education","Middle","Primary","No Education","Middle","Higher Secondary","Higher Secondary","Primary","Middle","Middle","Middle","No Education","Primary","Secondary","No Education","Primary","Primary","Primary","Middle","No Education","Middle","Higher Secondary","Middle","No Education","Secondary","No Education","Middle","Primary","Middle","Primary","Middle","Primary","Middle","Primary","No Education","Middle","No Education","Middle","Higher Secondary","Secondary","Primary","Secondary","Secondary","Primary","No Education","Primary","No Education","Primary","Higher Secondary","No Education","Secondary","No Education","No Education","Missing","Primary","No Education","Missing","Middle","No Education","Middle","Secondary","Secondary","Higher Secondary","Middle","Middle","No Education","Primary","Middle","Secondary","Primary","Primary","Secondary","Primary","Primary","Primary","Secondary","No Education","Secondary","Graduate","Secondary","Middle","Middle","Secondary","Primary","Secondary","Middle","No Education","No Education","No Education","No Education","No Education","No Education","No Education","No Education","Middle","Secondary","No Education","Higher Secondary","No Education","Graduate","Higher Secondary","Middle","No Education","No Education","Middle","Primary","Higher Secondary","No Education","Middle","Middle","Middle","Primary","No Education","No Education","Higher Secondary","No Education","Middle","No Education","Primary","Middle","Primary","No Education","Secondary","No Education","Primary","Middle","Primary","Middle","Higher Secondary","Middle","No Education","No Education","Primary","Primary","Primary","Secondary","Middle","Graduate","Primary","Middle","Secondary","Higher Secondary","No Education","No Education","No Education","Secondary","Secondary","Middle","No Education","Primary","No Education","Graduate","Middle","No Education","Middle","Middle","Higher Secondary","No Education","Primary","Primary","No Education","Primary","Secondary","No Education","No Education","Primary","Primary","Middle","Middle","Middle","No Education","Middle"],"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"Sex=Female\u003cbr\u003eAge=%{x}\u003cbr\u003eEducation=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#EF553B"},"name":"Female","notched":false,"offsetgroup":"Female","orientation":"h","showlegend":true,"x":[66,45,21,30,36,25,51,22,50,55,20,30,35,45,30,24,28,40,22,45,21,24,19,45,50,40,50,65,40,26,45,31,40,25,42,44,47,30,22,19,22,45,30,55,38,45,60,35,60,23,19,55,28,33,47,47,50,21,19,40,60,57,26,38,35,50,40,47,24,35,32,55,60,20,47,55,50,56,30,45,30,26,48,36,30,65,45,35,20,30,57,55,28,35,25,50,23,20,35,55,62,25,34,40,49,45,60,55,21,30,19,37,30,55,58,55,38,40,45,28,38,40,38,65,45,21,45,38,48,20,21,52,20,45,40,60,65,38,25,43,48,20,55,19,40,49,21,35,45,40,27,65,60,60,38,60,60,26,33,40,20,30,45,65,23,40,47,58,24,55,22,20,37,45,45,19,40,60,50,22,55,45,40,20,20,35,24,49,45,38,60,27],"x0":" ","xaxis":"x","y":["No Education","Missing","Graduate","Secondary","Middle","Middle","No Education","Higher Secondary","No Education","No Education","Higher Secondary","No Education","Primary","No Education","No Education","Secondary","Secondary","No Education","Middle","No Education","Middle","Middle","Secondary","No Education","No Education","No Education","Primary","No Education","No Education","No Education","No Education","Middle","Primary","Primary","No Education","No Education","No Education","Primary","Higher Secondary","Middle","Higher Secondary","No Education","No Education","No Education","Primary","No Education","No Education","Higher Secondary","No Education","Middle","Secondary","No Education","Secondary","Middle","Primary","No Education","No Education","Secondary","Secondary","No Education","No Education","No Education","Graduate & Above","No Education","Primary","No Education","Primary","No Education","Graduate","No Education","Secondary","Middle","Middle","Secondary","Primary","No Education","No Education","Primary","Middle","Primary","Primary","Middle","No Education","No Education","No Education","No Education","Secondary","No Education","Secondary","Primary","No Education","No Education","Secondary","No Education","No Education","No Education","Middle","Secondary","Middle","Primary","No Education","Secondary","Higher Secondary","No Education","No Education","No Education","No Education","No Education","Secondary","Graduate","Graduate","Middle","No Education","Middle","No Education","Primary","Primary","Middle","Middle","Secondary","Middle","Primary","Primary","No Education","No Education","Higher Secondary","No Education","No Education","Primary","Primary","Higher Secondary","Primary","Higher Secondary","No Education","No Education","No Education","No Education","Primary","Primary","Primary","Primary","Higher Secondary","No Education","Higher Secondary","Primary","Primary","Graduate","Middle","No Education","No Education","Middle","No Education","No Education","No Education","Primary","No Education","Missing","Higher Secondary","Middle","No Education","Secondary","No Education","No Education","Primary","Higher Secondary","No Education","No Education","No Education","Higher Secondary","No Education","Higher Secondary","Higher Secondary","No Education","Secondary","No Education","Higher Secondary","No Education","No Education","No Education","Middle","No Education","No Education","No Education","Higher Secondary","Secondary","Primary","Secondary","Primary","No Education","No Education","No Education","Secondary"],"y0":" ","yaxis":"y","type":"box"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Age"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Education"}},"legend":{"title":{"text":"Sex"},"tracegroupgap":0},"title":{"text":"Distribution of ages in Different Educational Status"},"boxmode":"group"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('d02f43e8-d0e1-40fe-b625-a7c1ce58890f');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<p>In Tuberculosis cases, maximum age was <strong>‘{python}max_age’.</strong> In Tuberculosis cases, common education status was <strong>‘{python}common_edu’.</strong></p>
+<p>In Tuberculosis cases, maximum age was <strong>‘{python}max_age’.</strong> In Tuberculosis cases, common education status was <strong>‘{python}common_edu’.</strong></p>
+<div id="23acd7cc" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div>                            <div id="5403b1a7-586e-4c7d-bd7b-523ee1c81df9" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("5403b1a7-586e-4c7d-bd7b-523ee1c81df9")) {                    Plotly.newPlot(                        "5403b1a7-586e-4c7d-bd7b-523ee1c81df9",                        [{"alignmentgroup":"True","bingroup":"y","histfunc":"sum","hovertemplate":"Sex=Male\u003cbr\u003esum of Age=%{x}\u003cbr\u003eEducation=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Male","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"Male","offsetgroup":"Male","orientation":"h","showlegend":true,"x":[57,27,54,60,28,34,48,40,46,38,27,35,52,52,38,30,65,65,55,35,32,55,55,38,55,55,25,42,54,48,27,57,52,40,38,70,27,24,73,60,42,24,20,38,26,39,55,34,38,45,55,35,60,18,19,39,36,37,25,36,62,52,57,67,65,75,60,30,65,24,38,57,67,42,64,42,36,48,44,37,45,55,42,19,45,60,45,30,40,58,60,20,35,50,55,50,30,42,55,47,35,70,67,48,29,63,52,38,40,44,51,28,42,23,23,62,47,39,55,62,34,45,30,53,58,30,68,60,21,54,60,50,55,60,50,38,49,19,65,55,60,40,55,38,60,45,45,48,60,25,56,35,33,33,42,41,30,65,62,56,60,43,65,35,39,63,40,48,45,25,65,31,50,54,40,65,38,65,30,30,35,54,55,45,48,50,63,37,45,60,40,43,41,40,65,54,55,45,25,69,30,19,45,45,41,62,26,55,40,31,40,21,70,65,48,63,65,43,70,55,55,38,59,38,48,38,20,52,60,34,64,65,62,52,50,57,47,63,57,45,51,48,67,65,18,69,65,44,45,32,60,60,63,72,65,65,67,44,71,46,55,44,52,43,25,42,53,60,42,60,55,35,55,48,50,42,41,60,69,65,38,59,49,57,49,54,32,42,57,49,67,65,56,57,21,27,30,29,20,60,64,67,58,60,55,50,68,45,40,36,35,47,41,49,48,31,52,63,57,38,51,50,61,65,35,39,52,37,38,60,34,65,23,56,21,57,33,23,50,53,60,51,66,35,49,23,68,40,36,55,38,21,18,60,52,58,58,60,50,50,26,25,59,67,41,50,55,48,57,70,37,51,47,58,60,59,65,59,45,27,54,60,45,33,37,25,65,65,44,54,55,35,49,22,67,40,30,30,38,53,63,65,32,40,26,56,66,60,69,43,62,68,55,56,45,52,69,65,51,45,38,48,55,50,60,60,57,57,24,52,47,28,60,28,48,60,50,38,53,58,52,60,34,60,55,39,55,25,65,65,25,60,63,65,40,50,45,65,35,62,52,45,59,51,45,47,75,66,47,40,38,60,54,56,49,60,65,47,55,56,48,60,48,62,58,55,56,59,68,40,63,45,45,50,20,60,65,60,50,53,55,47,57,40,50,67,66,55,75,29,45,88,57,67,75,55,60,50,46,80,47,42,18,70,38,48,59,65,57,51,65,60,58,40,47,62,40,24,38,66,36,57,65,65,44,62,65,50,65,39,37,35,60,40,26,24,66,46,47,65,65,65,50,32,45,70,56,60,59,45,55,58,55,55,70,35,40,58,46,73,27,65,23,34,28,64,60,64,60,55,49,53,60,21,20,40,27,40,40,29,43,65,50,70,55,55,65,67,48,55,76,42,76,22,65,24,35,53,46,45,35,57,18,65,38,62,49,50,60,68,24,48,54,50,61,39,44,37,61,50,61,53,68,25,32,55,44,60,55,63,49,27,45,32,60,44,53,20,62,60,48,52,64,53,58,62,55,25,43,35,57,36,23,41,52,39,45,36,35,47,55,35,63,44,60,63,65,60],"xaxis":"x","y":["Middle","Middle","Middle","No Education","Primary","Middle","Middle","No Education","Middle","Primary","Secondary","No Education","Primary","Middle","Middle","Primary","No Education","No Education","Middle","Primary","Primary","Secondary","Middle","Primary","No Education","No Education","Higher Secondary","No Education","No Education","No Education","Primary","Middle","Primary","Middle","Secondary","No Education","No Education","Secondary","Primary","No Education","Primary","Higher Secondary","Secondary","Middle","Primary","No Education","No Education","Primary","Primary","Primary","No Education","Primary","Primary","Secondary","Graduate","Secondary","Primary","Primary","Middle","No Education","Primary","Middle","Higher Secondary","Higher Secondary","No Education","Primary","Primary","No Education","No Education","Secondary","Primary","No Education","No Education","Secondary","Primary","No Education","Secondary","No Education","Secondary","No Education","No Education","Primary","Primary","Middle","No Education","Primary","No Education","No Education","Middle","Secondary","Primary","Middle","No Education","Primary","Primary","No Education","Secondary","Middle","No Education","No Education","Primary","No Education","No Education","Primary","Secondary","No Education","No Education","Higher Secondary","No Education","Secondary","No Education","Primary","Primary","Higher Secondary","Secondary","Secondary","Primary","Secondary","Primary","Primary","Secondary","Primary","Primary","No Education","Middle","Middle","Primary","Primary","Secondary","Primary","No Education","Primary","No Education","Primary","No Education","Middle","Secondary","Higher Secondary","Primary","Middle","Middle","Primary","Middle","No Education","Primary","No Education","No Education","Primary","No Education","Higher Secondary","No Education","Middle","Middle","No Education","Primary","Primary","Higher Secondary","No Education","No Education","No Education","No Education","No Education","Middle","No Education","Middle","Primary","Middle","Primary","No Education","Primary","No Education","Middle","Primary","Primary","No Education","No Education","Primary","No Education","Primary","Secondary","Primary","Secondary","Middle","Primary","Middle","Middle","Secondary","Primary","No Education","Primary","Middle","Primary","Middle","No Education","Primary","Middle","Primary","No Education","Higher Secondary","No Education","Primary","Higher Secondary","Secondary","Secondary","Primary","No Education","Middle","Primary","Middle","Higher Secondary","Middle","Secondary","Secondary","Primary","Middle","Primary","No Education","No Education","Primary","Secondary","No Education","Middle","Missing","Higher Secondary","Secondary","No Education","Graduate & Above","Middle","Primary","Middle","No Education","No Education","Primary","Secondary","No Education","Middle","No Education","No Education","Middle","Primary","Middle","Primary","Middle","Primary","Higher Secondary","Primary","No Education","Middle","Secondary","Primary","Primary","Primary","No Education","No Education","Primary","Primary","Primary","Middle","Primary","No Education","Middle","Primary","Primary","Secondary","Middle","Middle","Primary","Primary","Middle","Higher Secondary","Middle","No Education","Primary","No Education","No Education","No Education","Secondary","Middle","Secondary","No Education","Primary","Secondary","Primary","Middle","Middle","No Education","Middle","Middle","Secondary","Primary","No Education","Primary","No Education","Middle","Secondary","Primary","Secondary","Middle","Middle","No Education","Primary","Primary","Primary","Middle","No Education","Secondary","No Education","No Education","Primary","Primary","Secondary","Middle","Middle","Primary","Middle","Higher Secondary","Primary","Primary","Middle","Primary","Secondary","No Education","Primary","No Education","Secondary","Secondary","Primary","Middle","Middle","Primary","Primary","Middle","Higher Secondary","Middle","Secondary","Secondary","Primary","Graduate","Middle","Middle","Primary","Primary","Secondary","No Education","Middle","Primary","Middle","Middle","Primary","No Education","Middle","Secondary","Higher Secondary","Secondary","Middle","Middle","Middle","No Education","Middle","No Education","Secondary","Middle","Middle","Primary","Primary","Primary","Primary","Secondary","Middle","Primary","Secondary","Primary","Secondary","Primary","Secondary","Primary","No Education","Secondary","No Education","Middle","Secondary","Middle","Primary","Secondary","No Education","Graduate & Above","Middle","Primary","Middle","No Education","Primary","Secondary","Middle","Secondary","Secondary","No Education","Secondary","Middle","Primary","Secondary","Middle","Primary","Middle","Secondary","Primary","Secondary","Secondary","Primary","Middle","Middle","Primary","No Education","Primary","Middle","Middle","No Education","No Education","No Education","Middle","No Education","No Education","No Education","No Education","No Education","No Education","Primary","Primary","Primary","Middle","Secondary","No Education","Secondary","Primary","Middle","Middle","No Education","No Education","Middle","Middle","No Education","Middle","Primary","Primary","Primary","No Education","Secondary","No Education","Secondary","Middle","No Education","Higher Secondary","Middle","Secondary","No Education","Middle","Secondary","No Education","Secondary","Primary","Primary","Middle","Primary","Higher Secondary","Primary","Middle","Middle","Middle","Primary","Middle","No Education","Middle","No Education","Secondary","Middle","Primary","No Education","No Education","Primary","Primary","Primary","Primary","Middle","Middle","Secondary","Middle","Primary","Missing","Graduate","No Education","Secondary","Primary","Middle","Primary","Middle","Higher Secondary","No Education","Secondary","Middle","No Education","Middle","No Education","Primary","Secondary","Middle","Middle","Primary","Secondary","Primary","No Education","Middle","No Education","No Education","No Education","No Education","No Education","No Education","No Education","Middle","Primary","No Education","Middle","Higher Secondary","Higher Secondary","Primary","Middle","Middle","Middle","No Education","Primary","Secondary","No Education","Primary","Primary","Primary","Middle","No Education","Middle","Higher Secondary","Middle","No Education","Secondary","No Education","Middle","Primary","Middle","Primary","Middle","Primary","Middle","Primary","No Education","Middle","No Education","Middle","Higher Secondary","Secondary","Primary","Secondary","Secondary","Primary","No Education","Primary","No Education","Primary","Higher Secondary","No Education","Secondary","No Education","No Education","Missing","Primary","No Education","Missing","Middle","No Education","Middle","Secondary","Secondary","Higher Secondary","Middle","Middle","No Education","Primary","Middle","Secondary","Primary","Primary","Secondary","Primary","Primary","Primary","Secondary","No Education","Secondary","Graduate","Secondary","Middle","Middle","Secondary","Primary","Secondary","Middle","No Education","No Education","No Education","No Education","No Education","No Education","No Education","No Education","Middle","Secondary","No Education","Higher Secondary","No Education","Graduate","Higher Secondary","Middle","No Education","No Education","Middle","Primary","Higher Secondary","No Education","Middle","Middle","Middle","Primary","No Education","No Education","Higher Secondary","No Education","Middle","No Education","Primary","Middle","Primary","No Education","Secondary","No Education","Primary","Middle","Primary","Middle","Higher Secondary","Middle","No Education","No Education","Primary","Primary","Primary","Secondary","Middle","Graduate","Primary","Middle","Secondary","Higher Secondary","No Education","No Education","No Education","Secondary","Secondary","Middle","No Education","Primary","No Education","Graduate","Middle","No Education","Middle","Middle","Higher Secondary","No Education","Primary","Primary","No Education","Primary","Secondary","No Education","No Education","Primary","Primary","Middle","Middle","Middle","No Education","Middle"],"yaxis":"y","type":"histogram"},{"alignmentgroup":"True","bingroup":"y","histfunc":"sum","hovertemplate":"Sex=Female\u003cbr\u003esum of Age=%{x}\u003cbr\u003eEducation=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Female","marker":{"color":"#EF553B","pattern":{"shape":""}},"name":"Female","offsetgroup":"Female","orientation":"h","showlegend":true,"x":[66,45,21,30,36,25,51,22,50,55,20,30,35,45,30,24,28,40,22,45,21,24,19,45,50,40,50,65,40,26,45,31,40,25,42,44,47,30,22,19,22,45,30,55,38,45,60,35,60,23,19,55,28,33,47,47,50,21,19,40,60,57,26,38,35,50,40,47,24,35,32,55,60,20,47,55,50,56,30,45,30,26,48,36,30,65,45,35,20,30,57,55,28,35,25,50,23,20,35,55,62,25,34,40,49,45,60,55,21,30,19,37,30,55,58,55,38,40,45,28,38,40,38,65,45,21,45,38,48,20,21,52,20,45,40,60,65,38,25,43,48,20,55,19,40,49,21,35,45,40,27,65,60,60,38,60,60,26,33,40,20,30,45,65,23,40,47,58,24,55,22,20,37,45,45,19,40,60,50,22,55,45,40,20,20,35,24,49,45,38,60,27],"xaxis":"x","y":["No Education","Missing","Graduate","Secondary","Middle","Middle","No Education","Higher Secondary","No Education","No Education","Higher Secondary","No Education","Primary","No Education","No Education","Secondary","Secondary","No Education","Middle","No Education","Middle","Middle","Secondary","No Education","No Education","No Education","Primary","No Education","No Education","No Education","No Education","Middle","Primary","Primary","No Education","No Education","No Education","Primary","Higher Secondary","Middle","Higher Secondary","No Education","No Education","No Education","Primary","No Education","No Education","Higher Secondary","No Education","Middle","Secondary","No Education","Secondary","Middle","Primary","No Education","No Education","Secondary","Secondary","No Education","No Education","No Education","Graduate & Above","No Education","Primary","No Education","Primary","No Education","Graduate","No Education","Secondary","Middle","Middle","Secondary","Primary","No Education","No Education","Primary","Middle","Primary","Primary","Middle","No Education","No Education","No Education","No Education","Secondary","No Education","Secondary","Primary","No Education","No Education","Secondary","No Education","No Education","No Education","Middle","Secondary","Middle","Primary","No Education","Secondary","Higher Secondary","No Education","No Education","No Education","No Education","No Education","Secondary","Graduate","Graduate","Middle","No Education","Middle","No Education","Primary","Primary","Middle","Middle","Secondary","Middle","Primary","Primary","No Education","No Education","Higher Secondary","No Education","No Education","Primary","Primary","Higher Secondary","Primary","Higher Secondary","No Education","No Education","No Education","No Education","Primary","Primary","Primary","Primary","Higher Secondary","No Education","Higher Secondary","Primary","Primary","Graduate","Middle","No Education","No Education","Middle","No Education","No Education","No Education","Primary","No Education","Missing","Higher Secondary","Middle","No Education","Secondary","No Education","No Education","Primary","Higher Secondary","No Education","No Education","No Education","Higher Secondary","No Education","Higher Secondary","Higher Secondary","No Education","Secondary","No Education","Higher Secondary","No Education","No Education","No Education","Middle","No Education","No Education","No Education","Higher Secondary","Secondary","Primary","Secondary","Primary","No Education","No Education","No Education","Secondary"],"yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"sum of Age"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Education"}},"legend":{"title":{"text":"Sex"},"tracegroupgap":0},"title":{"text":"Distribution of Ages in Different Educational Status"},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('5403b1a7-586e-4c7d-bd7b-523ee1c81df9');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+<section id="chart-showing-the-relationship-between-body-max-index-and-initial-tb-testing-status-disaggregated-by-smoking" class="level2">
+<h2 class="anchored" data-anchor-id="chart-showing-the-relationship-between-body-max-index-and-initial-tb-testing-status-disaggregated-by-smoking">Chart showing the relationship between body max index and initial TB testing status disaggregated by smoking</h2>
+<section id="the-median-bmi-was-lower-among-smear-positive-patients-who-smoke" class="level3">
+<h3 class="anchored" data-anchor-id="the-median-bmi-was-lower-among-smear-positive-patients-who-smoke">The median BMI was lower among smear positive patients who smoke</h3>
+<div id="22f854d7" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>&lt;bound method Figure.update_layout of Figure({
+    'data': [{'alignmentgroup': 'True',
+              'box': {'visible': True},
+              'hovertemplate': 'Smoking=Yes&lt;br&gt;TB status=%{x}&lt;br&gt;Body Mass Index=%{y}&lt;extra&gt;&lt;/extra&gt;',
+              'legendgroup': 'Yes',
+              'marker': {'color': '#636efa'},
+              'name': 'Yes',
+              'offsetgroup': 'Yes',
+              'orientation': 'v',
+              'scalegroup': 'True',
+              'showlegend': True,
+              'type': 'violin',
+              'x': array(['Ini smear +', 'Ini smear +', 'Ini smear +', ..., 'Ini smear +',
+                          'Ini smear +', 'Ini smear +'], shape=(265,), dtype=object),
+              'x0': ' ',
+              'xaxis': 'x',
+              'y': array([21.3, 15.4, 15.1, ..., 17. , 13.9, 15. ], shape=(265,)),
+              'y0': ' ',
+              'yaxis': 'y'},
+             {'alignmentgroup': 'True',
+              'box': {'visible': True},
+              'hovertemplate': 'Smoking=No&lt;br&gt;TB status=%{x}&lt;br&gt;Body Mass Index=%{y}&lt;extra&gt;&lt;/extra&gt;',
+              'legendgroup': 'No',
+              'marker': {'color': '#EF553B'},
+              'name': 'No',
+              'offsetgroup': 'No',
+              'orientation': 'v',
+              'scalegroup': 'True',
+              'showlegend': True,
+              'type': 'violin',
+              'x': array(['Ini smear -', 'Ini smear -', 'Ini smear +', ..., 'Ini smear +',
+                          'Ini smear +', 'Missing'], shape=(615,), dtype=object),
+              'x0': ' ',
+              'xaxis': 'x',
+              'y': array([12. , 20.4, 18.7, ..., 21. , 13.3, 19.4], shape=(615,)),
+              'y0': ' ',
+              'yaxis': 'y'}],
+    'layout': {'legend': {'title': {'text': 'Smoking'}, 'tracegroupgap': 0},
+               'template': '...',
+               'title': {'text': 'Relationship between BMI &amp; TB status by smoking'},
+               'violinmode': 'group',
+               'xaxis': {'anchor': 'y', 'domain': [0.0, 1.0], 'title': {'text': 'TB status'}},
+               'yaxis': {'anchor': 'x', 'domain': [0.0, 1.0], 'title': {'text': 'Body Mass Index'}}}
+})&gt;</code></pre>
+</div>
+</div>
+<div id="714a18bd" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-stdout">
+<pre><code>37
+No Education</code></pre>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,90 @@
+---
+format:
+    html:
+        embed_resources: true
+        execute:
+            echo: false
+author: "Adekemi Asaolu"
+---
+title: "India TB Pathways Analysis"
+```{python}
+import plotly.express as px
+import pandas as pd
+import itables as it
+```
+
+## The India TB Pathways dataset is based on a study conducted in Vellore district, Tamil Nadu, India. It examines the pre-diagnostic costs and health-seeking behavior of 880 new adult pulmonary tuberculosis patients registered at Primary Health Centres (PHCs).
+
+```{python}
+tb_data=pd.read_csv(".venv\data\india_tb_pathways_and_costs.csv")
+tb_data
+```
+
+
+```{python}
+![Map of Tamil Nadu. Vellore district is in the north-east.]("images\tndistrict_1.png")
+```
+
+
+```{python}
+tb_data=pd.read_csv(".venv\data\india_tb_pathways_and_costs.csv")
+tb_data
+```
+
+```{python}
+px.histogram(tb_data, color="Sex", x="Form of TB", title="Distribution of  form of TBs among different genders")
+```
+## Tuberculosis positives were mostly male ini smear +
+
+```{python}
+max_age = int (tb_data.Age.max())
+common_edu = tb_data.Education.mode()[0]
+```
+
+```{python}
+px.box(tb_data, x="Age", y="Education", color="Sex", title="Distribution of ages in Different Educational Status")
+```
+
+In Tuberculosis cases, maximum age was **'{python}max_age'.**
+In Tuberculosis cases, common education status was **'{python}common_edu'.**
+
+
+```{python}
+tips = px.data.tips()
+max_tip=int(tips.tip.max()) # int needed to print clearly
+common_day=tips.day.mode()[0]
+```
+
+In Tuberculosis cases, maximum age was **'{python}max_age'.**
+In Tuberculosis cases, common education status was **'{python}common_edu'.**
+
+
+```{python}
+px.histogram(tb_data, x="Age", y="Education", color="Sex", title="Distribution of Ages in Different Educational Status")
+```
+
+## Chart showing the relationship between body max index and initial TB testing status disaggregated by smoking
+### The median BMI was lower among smear positive patients who smoke
+
+
+```{python}
+tb_data_violin= px.violin (tb_data,
+                          y= "bmi",
+                          x= "Form of TB",
+                          color ="Smoking",
+                          box = True,
+                          title="Relationship between BMI & TB status by smoking",
+                          labels={"Form of TB":"TB status",
+                                  "bmi": "Body Mass Index"})
+
+tb_data_violin.update_layout 
+    
+```
+
+
+```{python}
+max_bmi = int(tb_data.bmi.max()) 
+print (max_bmi)
+common_Education = tb_data.Education.mode()[0]
+print (common_Education)
+```

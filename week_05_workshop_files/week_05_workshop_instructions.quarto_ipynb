@@ -1,0 +1,370 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Python Workshop: Data Subsetting\"\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Introduction\n",
+        "\n",
+        "For this week's assignment, you will be preparing data subsets for **someone else to use**. It's a hands-on approach to using Pandas' filtering and selection methods. You can work directly in this document for the assignment.\n",
+        "\n",
+        "# Setup\n",
+        "\n",
+        "First, make sure this document is in your `graph_courses_python` folder, where your virtual environment is activated and you have pandas installed.\n",
+        "\n",
+        "Then, run the following code to load pandas, and set the display options for pandas dataframes:\n"
+      ],
+      "id": "c5d9531a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "pd.set_option('display.max_columns', None)"
+      ],
+      "id": "13c620a9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Get the Data\n",
+        "\n",
+        "Download the lending club dataset from GitHub here[https://github.com/the-graph-courses/pbb_2025_q1_materials/blob/main/week_05_workshop/data/loans_full_schema.csv](https://github.com/the-graph-courses/pbb_2025_q1_materials/blob/main/week_05_workshop/data/loans_full_schema.csv) then place it in an appropriate place in your `graph_courses_python` folder.\n",
+        "\n",
+        "Below, load the data into a pandas dataframe with the `read_csv()` function from pandas.\n"
+      ],
+      "id": "4c27fea9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "loans = pd.read_csv(\"week_05_workshop_files\\data\\loans_full_schema.csv\")\n",
+        "loans"
+      ],
+      "id": "cde5891d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "View the dataset in VS Code with the data viewer, so you can understand what it contains.\n",
+        "\n",
+        "The dataset comes from Lending Club, a platform for peer-to-peer lending. Each row pertains to a specific loan made through the platform.\n",
+        "\n",
+        "You can find the data dictionary here: [https://vincentarelbundock.github.io/Rdatasets/doc/openintro/loans_full_schema.html](https://vincentarelbundock.github.io/Rdatasets/doc/openintro/loans_full_schema.html).\n",
+        "\n",
+        "Now, drop the `rownames` column from the dataframe, as it's not a useful variable, but an artifact of the data source.\n"
+      ],
+      "id": "ce0e0a6d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "loans.drop(columns=[\"rownames\"])"
+      ],
+      "id": "f4332725",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Create and Export Data Subsets    \n",
+        "\n",
+        "For each subset below:\n",
+        "\n",
+        "1) Use Pandas selection and filtering methods to create the required extract\n",
+        "2) Export each subset to a separate CSV file in an \"outputs\" folder that you create.\n",
+        "\n",
+        "Here is a code snippet showing how to export a dataframe to a CSV file in an `outputs` folder:\n"
+      ],
+      "id": "4f49580f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "# Export to CSV\n",
+        "df.to_csv('outputs/my_dataframe.csv', index=False)"
+      ],
+      "id": "57329e18",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Data Subset 1: Extract demographic and loan information\n",
+        "\n",
+        "Create a subset containing the following demographic information (employment title, employment length, state, homeownership status) and loan details (loan amount, loan term, and interest rate). You may need to consult the data dictionary to identify which variables you need. Call your subset `demog_loan_info`.\n",
+        "\n",
+        "After creating the subset, rename the `term` column to `loan_term_months` to make it clear what the variable measures.\n",
+        "\n",
+        "Then, export the subset to a CSV file.\n"
+      ],
+      "id": "41d92c3a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df = pd.read_csv(\"week_05_workshop_files\\data\\loans_full_schema.csv\")\n",
+        "demog_loan_info=df[[\"emp_title\", \"emp_length\", \"state\", \"homeownership\", \"loan_amount\", \"term\", \"interest_rate\"]]\n",
+        "demog_loan_info"
+      ],
+      "id": "76de9148",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "demog_loan_info = demog_loan_info.rename(columns={\"term\": \"loan_term_months\"})\n",
+        "demog_loan_info\n",
+        "\n",
+        "# Export to CSV\n",
+        "demog_loan_info.to_csv('week_05_workshop_files/outputs/my_demog_dataframe.csv', index=False)"
+      ],
+      "id": "9c7403f0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Data Subset 2: Extract credit evaluation variables\n",
+        "\n",
+        "Create a subset with all credit-related variables. Use filtering with the `filter()` method and the `regex` argument to select variables that contain \"credit\" in their names. Call your subset `credit_vars`.\n",
+        "\n",
+        "Then, export the subset to a CSV file.\n"
+      ],
+      "id": "5b3b64c2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "credit_vars = df.filter(regex=\"credit\", axis=1)\n",
+        "\n",
+        "# Export the subset to a CSV file\n",
+        "credit_vars.to_csv(\"credit_variables.csv\", index=False)\n",
+        "\n",
+        "credit_vars"
+      ],
+      "id": "d28f1374",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Data Subset 3: Extract high-income borrowers\n",
+        "\n",
+        "Create a subset of only high-income borrowers (annual income > $100,000). Call your subset `high_income`.\n",
+        "\n",
+        "Then, export the subset to a CSV file.\n"
+      ],
+      "id": "be3a4f7c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "high_income = df[df[\"annual_income\"] > 100000]  \n",
+        "\n",
+        "high_income.to_csv(\"high_income_borrowers.csv\", index=False)\n",
+        "\n",
+        "high_income"
+      ],
+      "id": "3cd16fab",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Note that for this you do not have to subset any columns, as you did for the previous subsets.\n",
+        "\n",
+        "## Data Subset 4: Extract high-risk loans \n",
+        "\n",
+        "Create a subset of high-risk loans, defined as those meeting ANY of these criteria:\n",
+        "\n",
+        "- Interest rate is greater than 15%\n",
+        "- Debt-to-income ratio is greater than 30 (use the individual debt-to-income, not joint)\n",
+        "- Have had any delinquencies in the last 2 years\n",
+        "\n",
+        "Call your subset `high_risk`. Then, export the subset to a CSV file.\n"
+      ],
+      "id": "4784fefa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(df.columns)  "
+      ],
+      "id": "30d9f5fa",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "high_risk = df[\n",
+        "    (df[\"interest_rate\"] > 15) |  \n",
+        "    (df[\"debt_to_income\"] > 30) |  \n",
+        "    (df[\"delinq_2y\"] > 0)\n",
+        "]\n",
+        "\n",
+        "high_risk.to_csv(\"high_risk_loans.csv\", index=False)\n",
+        "\n",
+        "high_risk.head"
+      ],
+      "id": "193f53f4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Data Subset 5: Extract \"prime\" borrowers\n",
+        "\n",
+        "Create a subset of prime borrowers, defined as those meeting ALL of these criteria:\n",
+        "\n",
+        "- Grade A or B\n",
+        "- Debt-to-income ratio is less than 20\n",
+        "- Have NOT had any delinquencies in the last 2 years\n",
+        "\n",
+        "Call your subset `prime`. Then, export the subset to a CSV file.\n"
+      ],
+      "id": "51910d74"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(df.columns)  "
+      ],
+      "id": "78a1544d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "prime = df[\n",
+        "    (df[\"grade\"].isin([\"A\", \"B\"])) & \n",
+        "    (df[\"debt_to_income\"] < 20) &  \n",
+        "    (df[\"delinq_2y\"] == 0)  \n",
+        "]\n",
+        "\n",
+        "\n",
+        "prime\n",
+        "print(f\"Number of prime borrowers: {prime.shape[0]}\")"
+      ],
+      "id": "57246dee",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Optional Challenge: Export to Excel\n",
+        "\n",
+        "For an extra challenge, export all subsets to a single Excel workbook with multiple sheets using the `pd.ExcelWriter()` function.\n",
+        "\n",
+        "Here is an example code snippet showing how to do this using the `tips` dataset:\n"
+      ],
+      "id": "093393b2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | eval: false\n",
+        "import openpyxl # important to install this package\n",
+        "import plotly.express as px\n",
+        "\n",
+        "tips = px.data.tips()\n",
+        "\n",
+        "# Create some sample subsets\n",
+        "sunday_tips = tips[tips['day'] == 'Sun']\n",
+        "saturday_tips = tips[tips['day'] == 'Sat']\n",
+        "friday_tips = tips[tips['day'] == 'Fri']\n",
+        "\n",
+        "# Use the ExcelWriter to export each subset to a separate sheet\n",
+        "with pd.ExcelWriter('outputs/tips_subsets.xlsx') as writer:\n",
+        "    sunday_tips.to_excel(writer, sheet_name='Sunday', index=False)\n",
+        "    saturday_tips.to_excel(writer, sheet_name='Saturday', index=False)\n",
+        "    friday_tips.to_excel(writer, sheet_name='Friday', index=False)"
+      ],
+      "id": "fb26c950",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Create the Excel writer object\n",
+        "with pd.ExcelWriter('loan_data_subsets.xlsx', engine='xlsxwriter') as writer:\n",
+        "    # Write each DataFrame to a different sheet\n",
+        "    demog_loan_info.to_excel(writer, sheet_name='Demographic_Loan_Info', index=False)\n",
+        "    credit_vars.to_excel(writer, sheet_name='Credit_Variables', index=False)\n",
+        "    high_income.to_excel(writer, sheet_name='High_Income_Borrowers', index=False)\n",
+        "    high_risk.to_excel(writer, sheet_name='High_Risk_Loans', index=False)\n",
+        "    prime.to_excel(writer, sheet_name='Prime_Borrowers', index=False)\n",
+        "\n",
+        "# This will create an Excel file with all subsets in separate sheets\n",
+        "print(\"All subsets exported to 'loan_data_subsets.xlsx'\")"
+      ],
+      "id": "b36074b5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Submission\n",
+        "\n",
+        "Submit only your Quarto file or Python script with the completed code. The exports will be evaluated by reviewing your code, so you do not need to submit the data subsets."
+      ],
+      "id": "716877cc"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "c:\\Users\\Adekemi Asaolu\\OneDrive\\Desktop\\graph_courses_python\\.venv\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

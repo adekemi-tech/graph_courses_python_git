@@ -1,0 +1,145 @@
+## Imports
+```{python}
+import pandas as pd
+import vega_datasets as vd
+import plotly.express as px
+import warnings
+import calendar
+
+pd.options.mode.copy_on_write = True
+pd.options.display.max_rows = 40
+
+warnings.filterwarnings("ignore")
+```
+
+## Data
+```{python}
+weather_raw = vd.data.seattle_weather()
+
+# Select just 2012 data using query and add a month column
+weather = weather_raw.query("date.dt.year == 2012")
+weather["month"] = pd.Categorical(
+    weather["date"].dt.strftime("%B"),
+    categories=list(calendar.month_name[1:]),
+    ordered=True,
+)
+weather
+```
+
+```{python}
+pd.options.display.max_rows = 20
+```
+
+## Adding Summary Statistics with transform()
+```{python}
+weather.groupby('month').agg(mean_precip = ('precipitation', 'mean'))
+```
+
+```{python}
+weather['mean_precip_month'] = weather.groupby('month')['precipitation'].transform('mean')
+weather
+```
+
+
+```{python}
+weather['median_precip_month'] = weather.groupby('month')['precipitation'].transform('median')    
+weather
+```
+
+```{python}
+weather['sum_precip_month'] = weather.groupby('month')['precipitation'].transform('sum')
+weather
+```
+
+```{python}
+weather['precip_month_perc'] = 100 * weather['precipitation'] / weather["sum_precip_month"]    
+weather
+```
+
+## Practice Q: Daily Tip Proportions
+
+Using the tips dataset, calculate:
+ 1. A new column daily_total_tips containing the total tips for each day 
+ 2. A new column tip_proportion showing what proportion of that day’s total tips came from each customer
+
+```{python}
+tips = px.data.tips()
+
+# Calculate the total tips per day and add as a new column
+tips['daily_total_tips'] = tips.groupby('day')['tip'].transform('sum')
+
+# Calculate the tip proportion for each record
+tips['tip_proportion'] = tips['tip'] / tips['daily_total_tips']
+
+# Display the first few rows to check the results
+print(tips.head())
+```
+
+Let’s reinitialize the weather DataFrame to a smaller set of columns for the rest of the lesson:
+```{python}
+weather = weather[['date', 'month', 'precipitation', 'wind', 'weather']]
+weather
+```
+## Counting values within Groups Using value_counts()
+
+```{python}
+# Count of weather types
+weather["weather"].value_counts()
+```
+
+```{python}
+weather['weather'].value_counts(normalize=True)
+```
+Grouped version
+
+
+```{python}
+# Counts of weather types per month
+weather.groupby('month')['weather'].value_counts()
+```
+
+```{python}
+weather.groupby('month')['weather'].value_counts().reset_index()
+```
+
+```{python}
+weather.groupby('month')['weather'].value_counts(normalize=True).reset_index()
+```
+
+## Practice Q: Count Smokers and Non-Smokers by Day
+
+Using the tips dataset, count the number of smokers and non-smokers for each day.
+
+```{python}
+
+tips = px.data.tips()
+
+# Group by 'day' and 'smoker', then count the number of rows in each group
+result = tips.groupby(['day', 'smoker']).size().reset_index(name='count')
+
+print(result)
+
+```
+##  Cumulative Sums Within Groups
+
+```{python}
+## cumulative rain per month in the weather dataset
+weather["precip_cumul"] = weather.groupby("month")["precipitation"].cumsum()
+```
+
+## Practice Q: Cumulative Tip Amount by Day
+
+Using the tips dataset, compute the cumulative sum of total_bill for each day, adding a new column cumul_total_bill_day. Then add another column cumul_tip_day that contains the cumulative sum of tip for each day.
+
+```{python}
+
+tips = px.data.tips()
+tips = tips.sort_values('day')
+tips
+
+tips['cumul_total_bill_day'] = tips.groupby('day')['total_bill'].cumsum()
+tips['cumul_tip_day'] = tips.groupby('day')['tip'].cumsum()
+
+print(tips.head())
+
+```

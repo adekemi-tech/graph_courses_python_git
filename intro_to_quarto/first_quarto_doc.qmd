@@ -1,0 +1,73 @@
+---
+title: "My First Quarto Doc"
+author: "Adekemi Asaolu"
+format: 
+    html:
+        embed-resources: true
+execute:
+    echo: false
+   
+---
+# Level 1 Header
+
+Markdown lets you use *italics* and also **embolden** text
+
+You can also define bulleted lists:
+
+-First element
+-Second element
+
+You can also add [links](https://thegraphcourses.org)
+
+You can also embed images
+
+![description of the image](images/tgc_unity-768x568.webp)
+
+## Level 2 Header
+
+### Level 3 Header
+
+```{python}
+#| echo: false
+#| eval: false
+2 + 2
+```
+
+```{python}
+3 * 3
+for num in [1,2,3]:
+    print(num)
+
+4 * 4
+```
+
+# Displaying Tables
+
+```{python}
+import plotly.express as px
+from itables import show
+
+tips = px.data.tips()
+show(tips)
+```
+
+```{python}
+tips
+```
+
+# Displaying Plots
+
+```{python}
+px.violin(tips, x="tip", y="sex")
+```
+
+# Displaying Static PLots
+
+
+```{python}
+tips_sex = px.violin(tips, x="tip", y="sex")
+tips_sex.write_image('outputs/tips by sex.png')
+
+```
+
+![](outputs/tips%by%20by%20sex.png)

@@ -1,0 +1,54 @@
+---
+title: "India TB Pathways Analysis"
+format: 
+    html:
+    execute:
+        echo:false
+author: "Adekemi ASaolu"
+---
+```{python}
+import plotly.express as px
+import pandas as pd
+import itables as it
+```
+
+```{python}
+pd.read_csv("C:\Users\Adekemi Asaolu\Downloads\week_04_workshop_instructions.pdf")
+
+```
+
+```{python}
+it.show(df_tb)
+```
+![Map_of_Tamil_Nadu_Vellore_district is_in_the_north_east](images/tndistrict_1.png)
+
+```{python}
+px.histogram(df_tb, color="sex", x="Form of TB"
+title="Distribution of Form of TBs among different genders")
+```
+## Explanation: Tuberculosis positives were mostly male ini smear + 
+
+```{python}
+max_age = int(df_tb.Age.max())
+common_edu = df_tb.Education.mode()[0]
+```
+
+```{python}
+px.box(df_tb, x="Age", y="Education", color="Sex", title="Distribution of ages in different educational status")
+```
+In Tuberculosis cases, maximum age was **'{python} max_age'.**
+In Tuberculosis cases, common education status was **'{python} common_edu'**
+
+
+```{python}
+tips = px.data.tips()
+max_tip = int(tips.tip.max()) # int needed to print clearly
+common_day = tips.day.mode()[0]
+```
+
+In Tuberculosis cases maximum age was '{python} max_age'.
+In Tuberculosis cases common education status was '{python} common_edu'
+
+```{python}
+px.histogram(df_tb, x="Age", y="Education", color="Sex", title="Distribution of Ages in Different Educational Status"
+```
