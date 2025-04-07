@@ -1,0 +1,43 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Gapminder 2007\"\n",
+        "format: dashboard\n",
+        "theme: superhero\n",
+        "author: Adekemi Asaolu\n",
+        "---"
+      ],
+      "id": "d3c26759"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "# Load Child Mortality Rate data\n",
+        "child_mortality_df = pd.read_csv('path_to_child_mortality_data.csv')\n",
+        "\n",
+        "# Load Female Education data\n",
+        "female_education_df = pd.read_csv('path_to_female_education_data.csv')"
+      ],
+      "id": "3beaddd5",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "c:\\Users\\Adekemi Asaolu\\OneDrive\\Desktop\\Documents\\GitHub\\graph_courses_python_git\\.venv\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -1,0 +1,17 @@
+---
+title: "Gapminder 2007"
+format: dashboard
+theme: superhero
+author: Adekemi Asaolu
+---
+
+```{python}
+import pandas as pd
+
+# Load Child Mortality Rate data
+child_mortality_df = pd.read_csv('path_to_child_mortality_data.csv')
+
+# Load Female Education data
+female_education_df = pd.read_csv('path_to_female_education_data.csv')
+
+```
